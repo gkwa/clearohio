@@ -14,14 +14,19 @@ def greet(name, age):
     click.echo(f"Hello, {name}! You are {age} years old.")
 
 
-@main.command()
-@click.option("--fake", is_flag=True, help="Enable fake mode")
-def work(fake):
-    """Performs work."""
-    if fake:
-        click.echo("Performing fake work...")
+@main.group()
+def subcommand():
+    """A subcommand group."""
+
+
+@subcommand.command()
+@click.option("--store", is_flag=True, help="Enable store mode")
+def subsubcommand(store):
+    """A subsubcommand."""
+    if store:
+        click.echo("Store mode enabled.")
     else:
-        click.echo("Performing real work...")
+        click.echo("Store mode disabled.")
 
 
 if __name__ == "__main__":
